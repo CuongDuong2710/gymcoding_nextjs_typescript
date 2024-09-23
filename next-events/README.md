@@ -40,3 +40,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Nested route
 - Dynamic rout
 - Catch-all route
+
+## Link
+- <Link> element, the network fetches only a small Javascript file needed for that route.
+- <a> element, the browser reloads the entire web applications.
