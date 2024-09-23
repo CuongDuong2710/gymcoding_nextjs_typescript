@@ -35,6 +35,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
+# CHAPTER 1, 2, 3
+
 ## Routing
 - File-based route
 - Nested route
@@ -44,3 +46,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 ## Link
 - <Link> element, the network fetches only a small Javascript file needed for that route.
 - <a> element, the browser reloads the entire web applications.
+
+- Each route (or folder) in your application should have a `page.js` file that exports a default component. This component will be used as the UI for that route.
+
+- The `layout.js` file inside `/app` folder is a shared UI that shapes the layout of your application. You can place components that are used in all routes in this file.
+
+# CHAPTER 4 - SERVER AND CLIENT COMPONENTS
