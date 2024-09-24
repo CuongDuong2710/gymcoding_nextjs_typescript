@@ -1,13 +1,23 @@
 import Button from "./component/Button"
+import { getUser } from "./lib/actions/action"
 
 export const metadata = {
   title: 'Home'
 }
 
-export default function Home() {
+export default async function Home() {
+  const users = await getUser()
+  
   return  (
     <div className='m-2'>
       <Button />
+    <ul>
+      {
+        users.map(user => {
+          return <li>{user.name}</li>
+        })
+      }
+    </ul>
     </div>
   )
 }
