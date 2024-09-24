@@ -52,3 +52,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - The `layout.js` file inside `/app` folder is a shared UI that shapes the layout of your application. You can place components that are used in all routes in this file.
 
 # CHAPTER 4 - SERVER AND CLIENT COMPONENTS
+
+- All components created in Next.js are server components by default. The Javascript bundle size can be minimized and the application will load faster.
+
+- A server component is also SEO-friendly because search engine bots will be able to see the content of the page.
+
+- Why use client components if server components are that good?
+Because the main drawback of server components is interactivity. A server component can't listen to browser events such as a click , a form submission and changes on an input field.
+
+- Recomment to create a client component in a seperate file, and then import the client component to the server component.
