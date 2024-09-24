@@ -61,3 +61,16 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 Because the main drawback of server components is interactivity. A server component can't listen to browser events such as a click , a form submission and changes on an input field.
 
 - Recomment to create a client component in a seperate file, and then import the client component to the server component.
+
+# CHAPTER 5 - SERVER ACTIONS AND DATA FETCHING
+
+- A server action is an asynchronous function that's executed on the server, but it can be called both from server and client components.
+
+- A server action is private, so you don't need to create dedicated API routes to run code that should be hidden from the client, like updating the database and fetching external API with secrect keys.
+
+### When to use server actions?
+
+- Sending requests to external APIs
+- Manipulating database records (CRUD)
+- Performing business logic such as validating submitted data and processing payments.
+

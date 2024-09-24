@@ -1,13 +1,17 @@
 'use client'
 
-import { useState } from "react"
-import { getUser } from "../lib/actions/action"
+import { useEffect, useState } from "react"
 
 export default function Button() {
     const [users, setUsers] = useState([])
 
+    useEffect(function() {
+        fetchUser()
+    }, [])
+
     async function fetchUser() {
-        const users = await getUser()
+        const userData = await fetch('https://jsonplaceholder.typicode.com/users')
+        const users = await userData.json()
         setUsers(users)
     }
 
@@ -15,13 +19,12 @@ export default function Button() {
         <>
         <button
             className='btn btn-primary'
-            onClick={fetchUser}
         >
             Get Users
         </button>
         <ul>
             {users.map(user => {
-                return <li>{user.name}</li>
+                return <li key={user.id}>{user.name}</li>
             })}
         </ul>
         </>
