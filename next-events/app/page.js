@@ -11,13 +11,6 @@ export default async function Home() {
   return  (
     <div className='m-2'>
       <Button />
-    <ul>
-      {
-        users.map(user => {
-          return <li>{user.name}</li>
-        })
-      }
-    </ul>
     </div>
   )
 }
