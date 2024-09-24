@@ -1,5 +1,11 @@
-import Image from "next/image";
+'use client'
 
 export default function Home() {
-  return <button className="btn btn-primary m-2">Click me!</button>
+  return  (
+    <button 
+      className="btn btn-primary m-2"
+      onClick={() => console.log('Hi')}>
+      Click me!
+    </button>
+  )
 }
