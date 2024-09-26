@@ -1,45 +1,36 @@
 'use client'
 
-import { useState } from "react"
-import { createUser } from "../lib/actions/user.action"
-import toast from "react-hot-toast"
+import { signIn } from 'next-auth/react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-hot-toast'
 
-export default function SignUpForm() {
+export default function LoginForm({ callbackUrl }) {
+    const router = useRouter()
     const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = async event => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        try {
-            const user = await createUser({
-                email,
-                name,
-                password
-            })
+        const res = await signIn('credentials', {
+            email,
+            password,
+            redirect: false
+        })
 
-            if (user) {
-                toast.success('Sign Up Successfull')
+        if (res.status === 200) {
+            toast.success('Login Successful')
+            router.push(callbackUrl ?? '/profile')
+        } else {
+            if (res.error === 'CredentialsSigin') {
+                res.error = 'Wrong Password'
             }
-        } catch (error) {
-            toast.error('Sign Up Failed: This email is already registered')
+            toast.error(`Login Failed: ${res.error}`)
         }
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-                <label className="label" htmlFor="name">Name</label>
-                <input 
-                    id='name'
-                    className='input input-bordered w-full'
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                    type='text'
-                    placeholder='James Weasley'
-                    required
-                />
-            </div>
+        <form onSubmit={handleSubmit} className='flex-1 space-y-6'>
             <div className="space-y-2">
                 <label className="label" htmlFor="email">Email</label>
                 <input 
@@ -62,9 +53,10 @@ export default function SignUpForm() {
                     type='password'
                     placeholder='Enter password'
                     required
+                    minLength={6}
                 />
             </div>
-            <button className="btn btn-primary btn-block mt-4">Sign Up</button>
+            <button className="btn btn-primary btn-block mt-4">Log In</button>
         </form>
     )
 }
