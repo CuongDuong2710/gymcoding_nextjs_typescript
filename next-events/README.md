@@ -74,3 +74,9 @@ Because the main drawback of server components is interactivity. A server compon
 - Manipulating database records (CRUD)
 - Performing business logic such as validating submitted data and processing payments.
 
+# CHAPTER 10
+
+- Under the hood, NextAuth creates a session that holds information about the user after authencation. You can use the getServerSession() function provided by NextAuth.
+
+- To retrieve session data from the client, NextAuth provides a <SessionProvider> component, which uses React Context under the hood, and the useSession hook to get data stored in that context.
+
