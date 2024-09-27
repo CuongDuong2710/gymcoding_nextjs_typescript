@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@uploadthing/react": "^7.0.2",
     "bcrypt": "^5.1.1",
     "mongodb": "^6.9.0",
     "mongoose": "^8.6.3",
@@ -16,7 +17,8 @@
     "next-auth": "^4.24.7",
     "react": "^18",
     "react-dom": "^18",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "uploadthing": "^7.0.2"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
