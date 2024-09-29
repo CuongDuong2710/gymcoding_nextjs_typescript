@@ -6,13 +6,13 @@ import { generateClientDropzoneAccept } from 'uploadthing/client' // specify the
 import { FaUpload } from 'react-icons/fa'
 import Image from 'next/image'
 
-export function imageUploader({ imageUrl, onFieldChange, setFiles }) {
+export function ImageUploader({ imageUrl, onFieldChange, setFiles }) {
     const convertFileToUrl = file => URL.createObjectURL(file) // transforms file object it accpets into URL string
 
     const onDrop = useCallback(acceptedFiles => { // useCallback hook 
         setFiles(acceptedFiles) // used to cache a callback funtion so that the funtion doesn't need to be rendered ered on every change
         onFieldChange(convertFileToUrl(acceptedFiles[0]))
-    })
+    }, [])
 
     // getRootProps() creates the drag and drop zone
     // getInputProps() connects the mouse click to open the select file dialogue
@@ -50,8 +50,7 @@ export function imageUploader({ imageUrl, onFieldChange, setFiles }) {
                         Select From Computer
                     </button>
                 </div>
-            )
-            }
+            )}
         </div>
     )
 }
