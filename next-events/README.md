@@ -80,3 +80,16 @@ Because the main drawback of server components is interactivity. A server compon
 
 - To retrieve session data from the client, NextAuth provides a <SessionProvider> component, which uses React Context under the hood, and the useSession hook to get data stored in that context.
 
+NextAuth session object:
+
+```
+{
+    user: {
+        name: string
+        email: string
+        image: string
+    },
+    expires: Date // This is the expiry of the session
+}
+```
+

@@ -14,7 +14,11 @@ export const authConfig = {
 
                 const user = await getUserByEmail(email) // get from database
                 if (user && (await bcrypt.compare(password, user.password))) {
-                    return user
+                    // the value returned by authorize() function will be aded to the session object
+                    return {
+                        ...user,
+                        image: user.imageUrl
+                    }
                 }
                 return null
             }
