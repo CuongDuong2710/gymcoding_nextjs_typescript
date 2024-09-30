@@ -68,13 +68,13 @@ export default function UserForm({ user }) {
                         name='imageUrl'
                         control={control}
                         rules={{ required : true }}
-                        render={({ field }) => {
+                        render={({ field }) => (
                             <ImageUploader
                                 onFieldChange={field.onChange}
                                 imageUrl={field.value}
                                 setFiles={setFiles}
                             />
-                        }}
+                        )}
                     />
                 </div>
             </div>
