@@ -6,8 +6,10 @@ import { updateUser } from "../lib/actions/user.action"
 import { useUploadThing } from "../lib/uploadthing"
 import { ImageUploader } from "./ImageUploader"
 import { toast } from "react-hot-toast"
+import { useSession } from "next-auth/react"
 
 export default function UserForm({ user }) {
+    const { update } = useSession()
     const [files, setFiles] = useState([])
 
     const { register, handleSubmit, control, formState: { errors } } = useForm({ defaultValues: user })
@@ -32,6 +34,8 @@ export default function UserForm({ user }) {
             })
 
             if (updatedUser) {
+                // update() function will trigger a jwt callback in authConfig.js
+                update({ name: updateUser.name, image: updateUser.imageUrl })
                 toast.success('User Updated')
             }
         } catch (error) {

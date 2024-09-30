@@ -19,5 +19,14 @@ export const authConfig = {
                 return null
             }
         })
-    ]
+    ],
+    callbacks: {
+        jwt({ token, trigger, session }) { // session is the object you passed into the update() function in UserForm.js
+            if (trigger === 'update' && session) {
+                token.name = session.name
+                token.picture = session.image
+            }
+            return token
+        }
+    }
 }
