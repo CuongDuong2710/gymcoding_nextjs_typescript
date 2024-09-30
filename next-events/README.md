@@ -78,9 +78,19 @@ Because the main drawback of server components is interactivity. A server compon
 
 - Under the hood, NextAuth creates a session that holds information about the user after authencation. You can use the getServerSession() function provided by NextAuth.
 
-- To retrieve session data from the client, NextAuth provides a <SessionProvider> component, which uses React Context under the hood, and the useSession hook to get data stored in that context.
+- To retrieve session data from the client, NextAuth provides a <SessionProvider> component, which uses React Context under the hood, and the useSession() hook to get data stored in that context and the status (authenticated/ unauthenticated).
 
+- useSession() can called update() function to update the session data in User.Form.js
+
+
+## API route
+
+1. 
 NextAuth session object:
+
+authorize() in authConfig.js will return the value object that will be added to the session object
+
+http://localhost:3000/api/auth/session
 
 ```
 {
@@ -91,5 +101,32 @@ NextAuth session object:
     },
     expires: Date // This is the expiry of the session
 }
+
+
+{
+    "user": {
+        "name": "bidewa",
+        "email": "bidewa1989@gmail.com",
+        "image": "https://utfs.io/f/82mbOgadxuNmy5J0f8jE7TvGK6XSiReaComMVJZ8Ln90bgBA"
+    },
+    "expires": "2024-10-30T04:19:16.175Z"
+}
+
 ```
 
+2.  Uploadthing
+
+http://localhost:3000/api/uploadthing
+[
+    {
+        "slug": "imageUploader",
+        "config": {
+            "image": {
+                "maxFileSize": "4MB",
+                "maxFileCount": 1,
+                "minFileCount": 1,
+                "contentDisposition": "inline"
+            }
+        }
+    }
+]

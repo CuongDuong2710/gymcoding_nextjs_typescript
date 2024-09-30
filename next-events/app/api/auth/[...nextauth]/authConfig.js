@@ -8,7 +8,7 @@ export const authConfig = {
     },
     providers: [
         Credentials({
-            async authorize(credentials) {
+            async authorize(credentials) { // http://localhost:3000/api/auth/session
                 const email = credentials?.email.toLowerCase()
                 const password = credentials?.password
 

@@ -13,6 +13,8 @@ const auth = async () => {
     return session
 }
 
+// http://localhost:3000/api/uploadthing
+
 // UTRouter constant that will serve as UploadThing's route configuration:
 export const UTRouter = {
     imageUploader: uploadBuilder({ image: { maxFileSize: '4MB' } })
