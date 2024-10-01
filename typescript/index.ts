@@ -1,3 +1,9 @@
+type Book = {
+    title: string
+    author: string
+    availableCopies: number
+}
+
 const library = [
     { title: 'To Kill a Mockingbird', author: 'Harper Lee', availableCopies: 3},
     { title: '1984', author: 'George Orwell', availableCopies: 2},
@@ -5,14 +11,20 @@ const library = [
     { title: 'The Great Gasby', author: 'F.Scott Fitzgerald', availableCopies: 2}
 ]
 
+let favoriteColor: string = "blue"
+// favoriteColor = 1 // Type 'number' is not assignable to type 'string'.ts(2322)
+let availabeBook: number = 250
+let isOpenOnSundays: boolean = true
+
+
 const loanQueue = []
 let nextLoanId = 1 // change to `let`
 
-function addNewBook(bookObj) {
+function addNewBook(bookObj: Book) { // Parameter 'bookObj' implicitly has an 'any' type.ts(7006)
     library.push(bookObj)
 }
 
-function borrowBook(title) {
+function borrowBook(title: string) {
     // Typescript warns `selectedBook` is possible undefined
     const selectedBook = library.find(bookObj => bookObj.title === title)
 
@@ -34,7 +46,7 @@ function borrowBook(title) {
     return newLoan
 }
 
-function returnBook(loanId) {
+function returnBook(loanId: number) { // Parameter 'loanId' implicitly has an 'any' type.ts(7006)
     console.log('Loan queue: ', loanQueue)
     const loan = loanQueue.find(loan => loan.id === loanId)
     console.log('loan: ', loan)
@@ -54,7 +66,7 @@ borrowBook('Brave New World')
 
 TypeError: nextLoanId -> Assignment to constant variable. */
 
-returnBook("1")
+returnBook(1)
 // input `string` instead of `number` -> cannot find `loan` book
 
 console.log('Library: ', library)
