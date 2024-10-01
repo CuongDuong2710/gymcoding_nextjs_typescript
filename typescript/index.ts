@@ -7,7 +7,7 @@ type Book = {
 type Loan = {
     id: number
     book: Book
-    status: string
+    status: 'borrowed' | 'returned'
 }
 
 const library = [
@@ -46,7 +46,9 @@ function borrowBook(title: string) {
     }
     selectedBook.availableCopies--
 
-    const newLoan = { id: nextLoanId++, book: selectedBook, status: 'borrowed' }
+    const newLoan: Loan = { id: nextLoanId++, book: selectedBook, status: 'borrowed' }
+    //  Types of property 'status' are incompatible.
+    // Type 'string' is not assignable to type '"borrowed" | "returned"'.
     console.log('newLoan: ', newLoan)
     loanQueue.push(newLoan)
     return newLoan

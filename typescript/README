@@ -1,0 +1,4 @@
+tsc custom_types.ts
+
+// tsc custom_types.ts -> compile into custom_types.js
+// node custom_types.js

@@ -1,12 +1,19 @@
 type Instrument = string
 let primaryInstrument: Instrument = 'guitar'
 
+type VehicleType = 'motocycle' | 'car' | 'truck'
+
+// let vehicleType: VehicleType = 'abc' // Type '"abc"' is not assignable to type 'VehicleType'
+
 type Vehicle = {
     model: string
     year: number
     isElectric: boolean
     engine?: Engine
+    vehicleType: VehicleType
 }
+
+
 
 type Engine = {
     type: string
@@ -26,13 +33,15 @@ let vehicle: Vehicle = {
         type: 'Inline-4',
         horsepower: 158,
         fuelType: 'Gasoline'
-    }
+    },
+    vehicleType: 'car'
 }
 
 let vehicle2: Vehicle = {
     model: 'Model3',
     year: 2023,
-    isElectric: true
+    isElectric: true,
+    vehicleType: 'car'
 }
 
 displayVehicleInfo(vehicle) // Civic has a Inline-4 engine.
