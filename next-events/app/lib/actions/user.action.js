@@ -1,8 +1,7 @@
-
 'use server'
 
 import { dbConnect } from "../dbConnect"
-import User from "../user.model"
+import User from "../models/user.model"
 import bcrypt from 'bcrypt'
 import { revalidatePath } from "next/cache"
 

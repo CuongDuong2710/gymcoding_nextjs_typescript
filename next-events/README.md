@@ -130,3 +130,24 @@ http://localhost:3000/api/uploadthing
         }
     }
 ]
+
+![alt text](image.png)
+
+# CHAPER 14 - CREATE EVENT
+// http://localhost:3000/events/create
+
+[
+    "66f380549982945954306da3",
+    {
+        "startDateTime": "$D2024-09-30T08:26:07.160Z",
+        "endDateTime": "$D2024-09-30T08:26:07.160Z",
+        "title": "Iphone 16",
+        "category": "Technology",
+        "location": "Ho Chi Minh",
+        "url": "https://www.google.com",
+        "description": "Introduction about new Iphone 16",
+        "endDatetime": "$D2024-10-01T08:30:00.000Z",
+        "imageUrl": "https://utfs.io/f/82mbOgadxuNmvzxcnhp6rKHy7Pv0pfiSXqC14hQ5OGknUM9j"
+    },
+    "/profile"
+]
