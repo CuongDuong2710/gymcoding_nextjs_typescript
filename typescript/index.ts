@@ -4,6 +4,12 @@ type Book = {
     availableCopies: number
 }
 
+type Loan = {
+    id: number
+    book: Book
+    status: string
+}
+
 const library = [
     { title: 'To Kill a Mockingbird', author: 'Harper Lee', availableCopies: 3},
     { title: '1984', author: 'George Orwell', availableCopies: 2},
@@ -17,7 +23,7 @@ let availabeBook: number = 250
 let isOpenOnSundays: boolean = true
 
 
-const loanQueue = []
+const loanQueue: Loan[] = []
 let nextLoanId = 1 // change to `let`
 
 function addNewBook(bookObj: Book) { // Parameter 'bookObj' implicitly has an 'any' type.ts(7006)
@@ -47,9 +53,12 @@ function borrowBook(title: string) {
 }
 
 function returnBook(loanId: number) { // Parameter 'loanId' implicitly has an 'any' type.ts(7006)
-    console.log('Loan queue: ', loanQueue)
     const loan = loanQueue.find(loan => loan.id === loanId)
-    console.log('loan: ', loan)
+
+    if (!loan) {
+        console.error(`${loanId} was not found in the loan queue`)
+        throw new Error()
+    }
     loan.status = 'returned'
     loan.book.availableCopies++
     return loan
