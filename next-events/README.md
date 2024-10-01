@@ -133,7 +133,7 @@ http://localhost:3000/api/uploadthing
 
 ![alt text](image.png)
 
-# CHAPER 14 - CREATE EVENT
+# CHAPER 13 - CREATE EVENT
 // http://localhost:3000/events/create
 
 [
@@ -150,4 +150,34 @@ http://localhost:3000/api/uploadthing
         "imageUrl": "https://utfs.io/f/82mbOgadxuNmvzxcnhp6rKHy7Pv0pfiSXqC14hQ5OGknUM9j"
     },
     "/profile"
+]
+
+
+# CHAPTER 14 - UPDATE EVENT
+http://localhost:3000/events/66fa61a78d72b25728ac25a9/update
+
+Payload:
+[
+    {
+        "userId": "66f380549982945954306da3",
+        "event": {
+            "_id": "66fa61a78d72b25728ac25a9",
+            "title": "Iphone 16",
+            "description": "Introduction about new Iphone 16 (updated event)",
+            "location": "Ho Chi Minh",
+            "imageUrl": "https://utfs.io/f/82mbOgadxuNmvzxcnhp6rKHy7Pv0pfiSXqC14hQ5OGknUM9j",
+            "startDateTime": "$D2024-09-30T08:26:07.160Z",
+            "endDateTime": "$D2024-09-30T08:26:07.160Z",
+            "url": "https://www.google.com",
+            "category": "Technology",
+            "organizer": {
+                "_id": "66f380549982945954306da3",
+                "name": "bidewa"
+            },
+            "createdAt": "2024-09-30T08:30:31.502Z",
+            "__v": 0,
+            "endDatetime": "$D2024-10-22T17:00:00.000Z"
+        },
+        "path": "/events/66fa61a78d72b25728ac25a9"
+    }
 ]
