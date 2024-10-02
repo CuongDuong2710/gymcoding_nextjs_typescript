@@ -3,6 +3,7 @@ import { authConfig } from "../api/auth/[...nextauth]/authConfig"
 import { getUserByEmail } from "../lib/actions/user.action"
 import UserForm from "../component/UserForm"
 import { getEventsByUser } from "../lib/actions/event.action"
+import EventCard from '../component/EventCard'
 
 
 export default async function Profile() {
@@ -27,8 +28,7 @@ export default async function Profile() {
                 <h2 className='mb-4 text-3xl font-bold'>My Events</h2>
                 <div className='grid lg:grid-cols-3 gap-4 mt-12'>
                     {events.map(event => {
-                        return <h2>{event.description}</h2>
-                            // <EventCard event={event} userId={userId} key={event._id} />
+                        return <EventCard event={event} userId={userId} key={event._id} />
                     })}
                 </div>
             </div>

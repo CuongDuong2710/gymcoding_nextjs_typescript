@@ -8,5 +8,5 @@ export const formatDateTime = (dateString) => {
         hour12: true // use 12-hour clock (true) or 24-hour clock (false)
     }
 
-    return new Date(dateString).toLocaleString('en-US', dateTimeOptions)
+    return new Date(dateString).toLocaleString('en-US')
 }
