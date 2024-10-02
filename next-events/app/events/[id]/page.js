@@ -1,8 +1,9 @@
 import { getServerSession } from "next-auth";
-import { getEventById } from "../../lib/actions/event.action";
+import { getEventById, getRelatedEventsByCategory } from "../../lib/actions/event.action";
 import { authConfig } from "@/app/api/auth/[...nextauth]/authConfig"
 import { getUserByEmail } from "../../lib/actions/user.action";
 import EventDetail from "../../component/EventDetails";
+import EventCard from "@/app/component/EventCard";
 
 export default async function SingleEvent({ params: { id }}) {
     const event = await getEventById(id)
@@ -13,5 +14,24 @@ export default async function SingleEvent({ params: { id }}) {
         const user = await getUserByEmail(data.user?.email)
         userId = user._id
     }
-    return <EventDetail event={event} userId={userId} />
+
+    const relatedEvents = await getRelatedEventsByCategory(event.category, event._id)
+
+    return (
+        <>
+            <EventDetail event={event} userId={userId} />
+            {
+                relatedEvents.length > 0 && (
+                    <div className='p-6 pt-4 gap-6 mt-6 max-w-6xl'>
+                        <h2 className='mt-4 text-3xl font-bold'>Related Events</h2>
+                        <div className='grid lg:grid-cols-3 gap-4 mt-12'>
+                            {relatedEvents.map(event => {
+                                return <EventCard event={event} key={event._id} />
+                            })}
+                        </div>
+                    </div>
+                )
+            }
+        </>
+    )
 }

@@ -85,3 +85,21 @@ export async function getAllEvents() {
 
     return JSON.parse(JSON.stringify(events))
 }
+
+export async function getRelatedEventsByCategory(
+    categoryName,
+    eventId,
+    limit = 3
+){
+    await dbConnect()
+
+    const conditions = {
+        $and:[{ category: categoryName }, { _id: { $ne: eventId }}]
+    }
+
+    const eventsQuery = Event.find(conditions).sort({ createdAt: 'desc' }).limit(limit)
+
+    const events = await populateEvent(eventsQuery)
+
+    return JSON.parse(JSON.stringify(events))
+}
