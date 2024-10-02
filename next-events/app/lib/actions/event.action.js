@@ -75,3 +75,13 @@ export async function getEventsByUser(userId) {
 
     return JSON.parse(JSON.stringify(events))
 }
+
+export async function getAllEvents() {
+    await dbConnect()
+
+    const eventsQuery = Event.find({}).sort({ createdAt: 'desc' })
+
+    const events = await populateEvent(eventsQuery)
+
+    return JSON.parse(JSON.stringify(events))
+}
