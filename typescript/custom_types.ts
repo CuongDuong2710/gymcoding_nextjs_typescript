@@ -13,8 +13,6 @@ type Vehicle = {
     vehicleType: VehicleType
 }
 
-
-
 type Engine = {
     type: string
     horsepower: number
