@@ -27,18 +27,18 @@ let isOpenOnSundays: boolean = true
 const loanQueue: Loan[] = []
 let nextLoanId = 1 // change to `let`
 
-function addNewBook(bookObj: Book) { // Parameter 'bookObj' implicitly has an 'any' type.ts(7006)
+function addNewBook(bookObj: Book): void { // Parameter 'bookObj' implicitly has an 'any' type.ts(7006)
     library.push(bookObj)
 }
 
-function borrowBook(title: string) {
+function borrowBook(title: string): Loan | undefined {
     // Typescript warns `selectedBook` is possible undefined
     const selectedBook = library.find(bookObj => bookObj.title === title)
 
     // So we add more code for check `selectedBook` is exist. 
     if (!selectedBook) {
         console.error(`${title} does not exist in library`)
-        return
+        return // Function return types (chap 13): Type 'undefined' is not assignable to type 'Loan'.ts(2322)
     }
 
     if (selectedBook.availableCopies <= 0) {
@@ -55,7 +55,7 @@ function borrowBook(title: string) {
     return newLoan
 }
 
-function returnBook(loanId: number) { // Parameter 'loanId' implicitly has an 'any' type.ts(7006)
+function returnBook(loanId: number): Loan { // Parameter 'loanId' implicitly has an 'any' type.ts(7006)
     const loan = loanQueue.find(loan => loan.id === loanId)
 
     if (!loan) {
@@ -68,7 +68,7 @@ function returnBook(loanId: number) { // Parameter 'loanId' implicitly has an 'a
 }
 
 // Type narrowing
-function getBookDetail(identifier: string | number) {
+function getBookDetail(identifier: string | number): Book | undefined {
     if (typeof identifier === "string") {
         return library.find(book => book.title.toLocaleLowerCase() === identifier.toLocaleLowerCase())
     } else {
