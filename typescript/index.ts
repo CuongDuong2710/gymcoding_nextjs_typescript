@@ -26,8 +26,10 @@ let isOpenOnSundays: boolean = true
 
 const loanQueue: Loan[] = []
 let nextLoanId = 1 // change to `let`
+let nextBookId = 5
 
 function addNewBook(bookObj: Book): void { // Parameter 'bookObj' implicitly has an 'any' type.ts(7006)
+    bookObj.id = nextBookId++
     library.push(bookObj)
 }
 
@@ -93,3 +95,10 @@ TypeError: nextLoanId -> Assignment to constant variable. */
 // console.log('Library: ', library)
 // console.log('Loan queue: ', loanQueue)
 console.log(getBookDetail(1))
+
+
+/// ANY types -> turning off TypeScript checking for that variable. Don't use this keyword.
+
+let temperature: any = 72
+temperature = 'warm'
+temperature.slice(0,2)
