@@ -106,3 +106,7 @@ TypeError: nextLoanId -> Assignment to constant variable. */
 /* let temperature: any = 72
 temperature = 'warm'
 temperature.slice(0,2) */
+
+function getDetail<T>(array:T[], id: number) {
+    return array.find(item => item.id === id) // Property 'id' does not exist on type 'T' -> constraint T extends Item interface
+}
