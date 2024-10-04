@@ -54,7 +54,7 @@ export default function EventForm({ userId, type, event, eventId }) {
                 }
             } catch (error) {
                 toast.error('Addition Error!')
-                console.log('error')
+                console.log(error)
             }
         }
         if (type === 'Update') {
@@ -179,16 +179,16 @@ export default function EventForm({ userId, type, event, eventId }) {
                     )}
                 </div>
                 <div className='form-control'>
-                    <label htmlFor='endDatetime' className='label'>
+                    <label htmlFor='endDateTime' className='label'>
                         End Date
                     </label>
                     <Controller 
                         control={control}
-                        name='endDatetime'
+                        name='endDateTime'
                         rules={{ required: true }}
                         render={({ field }) => (
                             <DatePicker 
-                                id='endDatetime'
+                                id='endDateTime'
                                 {...field}
                                 selected={field.value}
                                 onChange={date => field.onChange(date)}
@@ -199,7 +199,7 @@ export default function EventForm({ userId, type, event, eventId }) {
                             />
                         )}
                     />
-                    {errors.endDatetime?.type === 'required' && (
+                    {errors.endDateTime?.type === 'required' && (
                         <p role='alert' className='text-red-600 text-sm pt-2'>
                             End Date is required
                         </p>
