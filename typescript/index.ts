@@ -112,7 +112,8 @@ interface Item {
 }
 
 function getDetail<T extends Item>(array:T[], id: number) {
-    return array.find(item => item.id === id) // Property 'id' does not exist on type 'T' -> constraint T extends Item interface
+    return array.find(item => item.id === id) // Property 'id' does not exist on type 'T' -> constraint T extends Item interface. Whatever type T is,
+    // it will have an `id` property of type number
 }
 
 // Testing
