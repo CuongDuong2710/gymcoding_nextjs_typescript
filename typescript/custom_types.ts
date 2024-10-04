@@ -38,9 +38,21 @@ function updateVehicle(id: number, updates: Partial<Vehicle>) { // `updates` is 
     Object.assign(foundVehicle, updates)
 }
 
-function addNewVehicle(newVeh: any): Vehicle {
+// type Omit<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P]; }
+// Construct a type with the properties of T except for those in type K.
+function addNewVehicle(newVeh: Omit<Vehicle, "id">): Vehicle { // `Omit<Vehicle, "id">` will have all the properties of Vehicle, just minus the `id` property
     const vehicle: Vehicle = {
         id: nextVehicleId++,
+        ...newVeh
+    }
+    vehicles.push(vehicle)
+    return vehicle
+}
+
+function addNewVehicleTwo(newVeh: Omit<Vehicle, "id" | "model">): Vehicle { // `Omit<Vehicle, "id">` will have all the properties of Vehicle, just minus the `id` and `model` property
+    const vehicle: Vehicle = {
+        id: nextVehicleId++,
+        model: 'Vinfast',
         ...newVeh
     }
     vehicles.push(vehicle)
@@ -93,6 +105,7 @@ const vehicles: Vehicle[] = [
 //    vehicleType: 'car' })
 //console.log(vehicles)
 
-addNewVehicle({  model: 'Toyota Camry', vehicleType: 'car',  year: 2023, isElectric: false })
+addNewVehicle({  model: 'Toyota Camry 111', vehicleType: 'car',  year: 2023, isElectric: false })
+addNewVehicleTwo({ vehicleType: 'car',  year: 2023, isElectric: true })
 
 console.log(vehicles)

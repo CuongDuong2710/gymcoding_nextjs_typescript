@@ -24,8 +24,15 @@ function updateVehicle(id, updates) {
     }
     Object.assign(foundVehicle, updates);
 }
+// type Omit<T, K extends keyof any> = { [P in Exclude<keyof T, K>]: T[P]; }
+// Construct a type with the properties of T except for those in type K.
 function addNewVehicle(newVeh) {
     var vehicle = __assign({ id: nextVehicleId++ }, newVeh);
+    vehicles.push(vehicle);
+    return vehicle;
+}
+function addNewVehicleTwo(newVeh) {
+    var vehicle = __assign({ id: nextVehicleId++, model: 'Vinfast' }, newVeh);
     vehicles.push(vehicle);
     return vehicle;
 }
@@ -68,5 +75,6 @@ var vehicles = [
 // updateVehicle(3, { 
 //    vehicleType: 'car' })
 //console.log(vehicles)
-addNewVehicle({ model: 'Toyota Camry', vehicleType: 'car', year: 2023, isElectric: false });
+addNewVehicle({ model: 'Toyota Camry 111', vehicleType: 'car', year: 2023, isElectric: false });
+addNewVehicleTwo({ vehicleType: 'car', year: 2023, isElectric: true });
 console.log(vehicles);
