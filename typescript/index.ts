@@ -28,9 +28,12 @@ const loanQueue: Loan[] = []
 let nextLoanId = 1 // change to `let`
 let nextBookId = 5
 
-function addNewBook(bookObj: Book): void { // Parameter 'bookObj' implicitly has an 'any' type.ts(7006)
-    bookObj.id = nextBookId++
-    library.push(bookObj)
+function addNewBook(bookObj: Omit<Book, "id">): void { // Parameter 'bookObj' implicitly has an 'any' type.ts(7006)
+    const newBook: Book = {
+        id: nextBookId++,
+        ...bookObj
+    }
+    library.push(newBook)
 }
 
 function borrowBook(title: string): Loan | undefined {
@@ -79,9 +82,10 @@ function getBookDetail(identifier: string | number): Book | undefined {
 }
 
 // Testing
-addNewBook({ id: 5, title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', availableCopies: 1 })
-addNewBook({ id: 6, title: 'Brave New World', author: 'Aldous Huxley', availableCopies: 3 })
-addNewBook({ id: 7, title: 'The Catcher in the Rye', author: 'J.D.Salinger', availableCopies: 2 })
+addNewBook({ title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', availableCopies: 1 })
+addNewBook({ title: 'Brave New World', author: 'Aldous Huxley', availableCopies: 3 })
+addNewBook({ title: 'The Catcher in the Rye', author: 'J.D.Salinger', availableCopies: 2 })
+console.log('Library: ', library)
 
 // borrowBook('Brave New World')
 /* const newLoan = { id: nextLoanId++, book: selectedBook, status: 'borrowed' }
@@ -94,11 +98,11 @@ TypeError: nextLoanId -> Assignment to constant variable. */
 
 // console.log('Library: ', library)
 // console.log('Loan queue: ', loanQueue)
-console.log(getBookDetail(1))
+// console.log(getBookDetail(1))
 
 
 /// ANY types -> turning off TypeScript checking for that variable. Don't use this keyword.
 
-let temperature: any = 72
+/* let temperature: any = 72
 temperature = 'warm'
-temperature.slice(0,2)
+temperature.slice(0,2) */

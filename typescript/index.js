@@ -1,3 +1,14 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var library = [
     { id: 1, title: 'To Kill a Mockingbird', author: 'Harper Lee', availableCopies: 3 },
     { id: 2, title: '1984', author: 'George Orwell', availableCopies: 2 },
@@ -10,8 +21,10 @@ var availabeBook = 250;
 var isOpenOnSundays = true;
 var loanQueue = [];
 var nextLoanId = 1; // change to `let`
+var nextBookId = 5;
 function addNewBook(bookObj) {
-    library.push(bookObj);
+    var newBook = __assign({ id: nextBookId++ }, bookObj);
+    library.push(newBook);
 }
 function borrowBook(title) {
     // Typescript warns `selectedBook` is possible undefined
@@ -19,7 +32,7 @@ function borrowBook(title) {
     // So we add more code for check `selectedBook` is exist. 
     if (!selectedBook) {
         console.error("".concat(title, " does not exist in library"));
-        return;
+        return; // Function return types (chap 13): Type 'undefined' is not assignable to type 'Loan'.ts(2322)
     }
     if (selectedBook.availableCopies <= 0) {
         console.error("".concat(title, " has no available copies"));
@@ -53,9 +66,10 @@ function getBookDetail(identifier) {
     }
 }
 // Testing
-addNewBook({ id: 5, title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', availableCopies: 1 });
-addNewBook({ id: 6, title: 'Brave New World', author: 'Aldous Huxley', availableCopies: 3 });
-addNewBook({ id: 7, title: 'The Catcher in the Rye', author: 'J.D.Salinger', availableCopies: 2 });
+addNewBook({ title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', availableCopies: 1 });
+addNewBook({ title: 'Brave New World', author: 'Aldous Huxley', availableCopies: 3 });
+addNewBook({ title: 'The Catcher in the Rye', author: 'J.D.Salinger', availableCopies: 2 });
+console.log('Library: ', library);
 // borrowBook('Brave New World')
 /* const newLoan = { id: nextLoanId++, book: selectedBook, status: 'borrowed' }
 ^
@@ -65,4 +79,8 @@ TypeError: nextLoanId -> Assignment to constant variable. */
 // input `string` instead of `number` -> cannot find `loan` book
 // console.log('Library: ', library)
 // console.log('Loan queue: ', loanQueue)
-console.log(getBookDetail(1));
+// console.log(getBookDetail(1))
+/// ANY types -> turning off TypeScript checking for that variable. Don't use this keyword.
+/* let temperature: any = 72
+temperature = 'warm'
+temperature.slice(0,2) */ 
