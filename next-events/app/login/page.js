@@ -3,6 +3,10 @@ import { getServerSession } from "next-auth";
 import { authConfig } from "../api/auth/[...nextauth]/authConfig";
 import { redirect } from "next/navigation";
 
+export const metadata = {
+    title: 'Log In | Next Events'
+}
+
 export default async function Login({ searchParams }) {
     const data = await getServerSession(authConfig) // return the active session object obtained from our NextAuth configuration
     if ( data !== null) {

@@ -6,6 +6,22 @@ import Link from 'next/link'
 import { signOut } from 'next-auth/react'
 import { FaSearch } from 'react-icons/fa'
 import Search from './Search'
+import { Suspense } from 'react'
+
+/* 
+npm run build
+
+Generating static pages (0/11)  [=   ] ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/signup". \
+Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout 
+
+Basically, using the `useSearchParam` hook will cause the entire page to be rendered on the client side.
+
+We want parts of the page to be rendered on the server to run server actions, so we need to wrap the component that uses the `useSearchParam`
+hook with a Suspense component
+
+Suspense is a React component used to isolate parts of your code that require data fetching. This allows React to load the rest of the component, and
+display that component only when it's ready
+*/
 
 export default function Navbar() {
     const { status, data: session } = useSession()
@@ -24,7 +40,9 @@ export default function Navbar() {
             </div>
             <div className='navbar-center'>
                 <div className='hidden md:block w-[32rem]'>
-                    <Search />
+                    <Suspense>
+                        <Search />
+                    </Suspense>
                 </div>
                 <div className='md:hidden'>
                     <div
@@ -38,7 +56,9 @@ export default function Navbar() {
                         id='searchDropdown'
                         className='hidden absolute mt-2 left-1/4 bg-white p-2 rounded shadow-md w-72'
                     >
-                        <Search />
+                        <Suspense>
+                            <Search />
+                        </Suspense>
                     </div>
                 </div>
             </div>

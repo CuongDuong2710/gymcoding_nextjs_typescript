@@ -5,6 +5,14 @@ import { getUserByEmail } from "../../lib/actions/user.action";
 import EventDetail from "../../component/EventDetails";
 import EventCard from "@/app/component/EventCard";
 
+export async function generateMetadata({ params: { id } }) {
+    const event = await getEventById(id)
+
+    return {
+        title: event.title
+    }
+}
+
 export default async function SingleEvent({ params: { id }}) {
     const event = await getEventById(id)
 
