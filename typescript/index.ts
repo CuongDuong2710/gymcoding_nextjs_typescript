@@ -81,12 +81,12 @@ function getBookDetail(identifier: string | number): Book | undefined {
     }
 }
 
-// Testing
+/* // Testing
 addNewBook({ title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', availableCopies: 1 })
 addNewBook({ title: 'Brave New World', author: 'Aldous Huxley', availableCopies: 3 })
 addNewBook({ title: 'The Catcher in the Rye', author: 'J.D.Salinger', availableCopies: 2 })
 console.log('Library: ', library)
-
+ */
 // borrowBook('Brave New World')
 /* const newLoan = { id: nextLoanId++, book: selectedBook, status: 'borrowed' }
 ^
@@ -107,6 +107,18 @@ TypeError: nextLoanId -> Assignment to constant variable. */
 temperature = 'warm'
 temperature.slice(0,2) */
 
-function getDetail<T>(array:T[], id: number) {
+interface Item {
+    id: number
+}
+
+function getDetail<T extends Item>(array:T[], id: number) {
     return array.find(item => item.id === id) // Property 'id' does not exist on type 'T' -> constraint T extends Item interface
 }
+
+// Testing
+addNewBook({ title: 'Brave New World', author: 'Aldous Huxley', availableCopies: 3 })
+borrowBook('Brave New World')
+returnBook(1)
+
+console.log(getDetail<Book>(library, 1))
+console.log(getDetail<Loan>(loanQueue, 1))

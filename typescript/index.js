@@ -65,22 +65,13 @@ function getBookDetail(identifier) {
         return library.find(function (book) { return book.id === identifier; });
     }
 }
+function getDetail(array, id) {
+    return array.find(function (item) { return item.id === id; }); // Property 'id' does not exist on type 'T' -> constraint T extends Item interface
+}
 // Testing
-addNewBook({ title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', availableCopies: 1 });
 addNewBook({ title: 'Brave New World', author: 'Aldous Huxley', availableCopies: 3 });
-addNewBook({ title: 'The Catcher in the Rye', author: 'J.D.Salinger', availableCopies: 2 });
-console.log('Library: ', library);
-// borrowBook('Brave New World')
-/* const newLoan = { id: nextLoanId++, book: selectedBook, status: 'borrowed' }
-^
-
-TypeError: nextLoanId -> Assignment to constant variable. */
-// returnBook(1)
-// input `string` instead of `number` -> cannot find `loan` book
-// console.log('Library: ', library)
-// console.log('Loan queue: ', loanQueue)
-// console.log(getBookDetail(1))
-/// ANY types -> turning off TypeScript checking for that variable. Don't use this keyword.
-/* let temperature: any = 72
-temperature = 'warm'
-temperature.slice(0,2) */ 
+borrowBook('Brave New World');
+returnBook(1);
+console.log(getDetail(library, 1));
+console.log(getDetail(loanQueue, 1));
+console.log(getDetail(library, 5));
