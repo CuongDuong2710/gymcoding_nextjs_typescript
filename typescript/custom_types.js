@@ -1,4 +1,16 @@
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var primaryInstrument = 'guitar';
+var nextVehicleId = 4;
 function displayVehicleInfo(vehicle) {
     var _a;
     console.log("".concat(vehicle.model, " has a ").concat((_a = vehicle.engine) === null || _a === void 0 ? void 0 : _a.type, " engine.")); // 'vehicle.engine' is possibly 'undefined'
@@ -11,6 +23,11 @@ function updateVehicle(id, updates) {
         return;
     }
     Object.assign(foundVehicle, updates);
+}
+function addNewVehicle(newVeh) {
+    var vehicle = __assign({ id: nextVehicleId++ }, newVeh);
+    vehicles.push(vehicle);
+    return vehicle;
 }
 var vehicle = {
     id: 1,
@@ -47,8 +64,9 @@ var vehicles = [
 // displayVehicleInfo(vehicle2) // Model3 has a undefined engine.
 // tsc custom_types.ts -> compile into custom_types.js
 // node custom_types.js
-updateVehicle(1, { model: 'Honda Suzuki' });
-updateVehicle(3, {
-    vehicleType: 'car'
-});
+// updateVehicle(1, { model: 'Honda Suzuki' })
+// updateVehicle(3, { 
+//    vehicleType: 'car' })
+//console.log(vehicles)
+addNewVehicle({ model: 'Toyota Camry', vehicleType: 'car', year: 2023, isElectric: false });
 console.log(vehicles);

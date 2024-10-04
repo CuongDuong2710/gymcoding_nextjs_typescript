@@ -20,6 +20,8 @@ type Engine = {
     fuelType: string
 }
 
+let nextVehicleId = 4
+
 function displayVehicleInfo(vehicle: Vehicle) {
     console.log(`${vehicle.model} has a ${vehicle.engine?.type} engine.`) // 'vehicle.engine' is possibly 'undefined'
 }
@@ -34,6 +36,15 @@ function updateVehicle(id: number, updates: Partial<Vehicle>) { // `updates` is 
     }
 
     Object.assign(foundVehicle, updates)
+}
+
+function addNewVehicle(newVeh: any): Vehicle {
+    const vehicle: Vehicle = {
+        id: nextVehicleId++,
+        ...newVeh
+    }
+    vehicles.push(vehicle)
+    return vehicle
 }
 
 let vehicle: Vehicle = {
@@ -77,7 +88,11 @@ const vehicles: Vehicle[] = [
 // tsc custom_types.ts -> compile into custom_types.js
 // node custom_types.js
 
-updateVehicle(1, { model: 'Honda Suzuki' })
-updateVehicle(3, { 
-    vehicleType: 'car' })
+// updateVehicle(1, { model: 'Honda Suzuki' })
+// updateVehicle(3, { 
+//    vehicleType: 'car' })
+//console.log(vehicles)
+
+addNewVehicle({  model: 'Toyota Camry', vehicleType: 'car',  year: 2023, isElectric: false })
+
 console.log(vehicles)
