@@ -24,8 +24,9 @@ function displayVehicleInfo(vehicle: Vehicle) {
     console.log(`${vehicle.model} has a ${vehicle.engine?.type} engine.`) // 'vehicle.engine' is possibly 'undefined'
 }
 
-function updateVehicle(id: number, updates: any) { // `updates` is an object that only contain the properties we want to change
-    const foundVehicle = vehicles.find(vehicle => vehicle.id === id)
+function updateVehicle(id: number, updates: Partial<Vehicle>) { // `updates` is an object that only contain the properties we want to change
+    const foundVehicle = vehicles.find(vehicle => vehicle.id === id) // type Partial<T> = { [P in keyof T]?: T[P] | undefined; }. 
+    //Make all properties in T optional
 
     if (!foundVehicle) {
         console.error('Vehicle not found')
@@ -76,7 +77,7 @@ const vehicles: Vehicle[] = [
 // tsc custom_types.ts -> compile into custom_types.js
 // node custom_types.js
 
-updateVehicle(1, { model: 'Honda Accord' })
+updateVehicle(1, { model: 'Honda Suzuki' })
 updateVehicle(3, { 
     vehicleType: 'car' })
 console.log(vehicles)

@@ -4,7 +4,8 @@ function displayVehicleInfo(vehicle) {
     console.log("".concat(vehicle.model, " has a ").concat((_a = vehicle.engine) === null || _a === void 0 ? void 0 : _a.type, " engine.")); // 'vehicle.engine' is possibly 'undefined'
 }
 function updateVehicle(id, updates) {
-    var foundVehicle = vehicles.find(function (vehicle) { return vehicle.id === id; });
+    var foundVehicle = vehicles.find(function (vehicle) { return vehicle.id === id; }); // type Partial<T> = { [P in keyof T]?: T[P] | undefined; }. 
+    //Make all properties in T optional
     if (!foundVehicle) {
         console.error('Vehicle not found');
         return;
@@ -46,7 +47,7 @@ var vehicles = [
 // displayVehicleInfo(vehicle2) // Model3 has a undefined engine.
 // tsc custom_types.ts -> compile into custom_types.js
 // node custom_types.js
-updateVehicle(1, { model: 'Honda Accord' });
+updateVehicle(1, { model: 'Honda Suzuki' });
 updateVehicle(3, {
     vehicleType: 'car'
 });
